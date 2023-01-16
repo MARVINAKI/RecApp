@@ -3,10 +3,7 @@ package com.example.recapp.controllers;
 import com.example.recapp.model.Recipe;
 import com.example.recapp.services.Impl.RecIngServiceImpl;
 import com.example.recapp.services.RecService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/recipes")
@@ -18,13 +15,11 @@ public class RecController {
         this.recService = recService;
     }
 
-    @GetMapping
-    public String addRec(@RequestParam String title,
-                         @RequestParam int time,
-                         @RequestParam String... steps) {
-        recService.addRecipe(new Recipe(title,time,steps));
+    @PostMapping
+    public Recipe addRec(@RequestBody Recipe recipe) {
+        recService.addRecipe(recipe);
         RecIngServiceImpl.clearList();
-        return "Рецепт " + title + " успешно добавлен";
+        return recipe;
     }
 
     @GetMapping("/print")
