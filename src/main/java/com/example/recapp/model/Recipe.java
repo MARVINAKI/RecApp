@@ -1,6 +1,5 @@
 package com.example.recapp.model;
 
-import com.example.recapp.services.Impl.RecIngServiceImpl;
 import lombok.Data;
 
 import java.util.*;
@@ -12,10 +11,10 @@ public class Recipe {
     private Set<Ingredient> listOfIng = new LinkedHashSet<>();
     private Queue<String> stepsList = new ArrayDeque<>();
 
-    public Recipe(String title, int timeOfCooking, String... steps) {
+    public Recipe(String title, int timeOfCooking, Collection<Ingredient> ingredients, String... steps) {
         this.title = title;
         this.timeOfCooking = timeOfCooking;
-        this.listOfIng.addAll(RecIngServiceImpl.getList());
-        stepsList.addAll(Arrays.asList(steps));
+        this.listOfIng.addAll(ingredients);
+        this.stepsList.addAll(Arrays.asList(steps));
     }
 }
