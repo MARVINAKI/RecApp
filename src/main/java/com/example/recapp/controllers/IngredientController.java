@@ -28,21 +28,21 @@ public class IngredientController {
         Ingredient ingredient = ingredientService.getIngredient(id);
         return ingredient == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(ingredient);
     }
-
-    @GetMapping("/print")
-    public Collection<Ingredient> getAllIngredients() {
-        return ingredientService.getAllIngredients();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Ingredient> editRecipe(@PathVariable int id,
-                                                 @RequestBody Ingredient newIngredient) {
-        Ingredient ingredient = ingredientService.editIngredient(id, newIngredient);
-        return ingredient == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(ingredient);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRecipe(@PathVariable int id) {
-        return ingredientService.deleteIngredient(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
-    }
+//
+//    @GetMapping("/print")
+//    public Collection<Ingredient> getAllIngredients() {
+//        return ingredientService.getAllIngredients();
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Ingredient> editRecipe(@PathVariable int id,
+//                                                 @RequestBody Ingredient newIngredient) {
+//        Ingredient ingredient = ingredientService.editIngredient(id, newIngredient);
+//        return ingredient == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(ingredient);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteRecipe(@PathVariable int id) {
+//        return ingredientService.deleteIngredient(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+//    }
 }

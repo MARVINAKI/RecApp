@@ -28,21 +28,21 @@ public class RecipeController {
         Recipe recipe = recService.getRecipe(id);
         return recipe == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(recipe);
     }
-
-    @GetMapping("/print")
-    public Collection<Recipe> getAllRecipes() {
-        return recService.getAllRecipes();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Recipe> editRecipe(@PathVariable int id,
-                                             @RequestBody Recipe newRecipe) {
-        Recipe recipe = recService.editRecipe(id, newRecipe);
-        return recipe == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(recipe);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRecipe(@PathVariable int id) {
-        return recService.deleteRecipe(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
-    }
+//
+//    @GetMapping("/print")
+//    public Collection<Recipe> getAllRecipes() {
+//        return recService.getAllRecipes();
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Recipe> editRecipe(@PathVariable int id,
+//                                             @RequestBody Recipe newRecipe) {
+//        Recipe recipe = recService.editRecipe(id, newRecipe);
+//        return recipe == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(recipe);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteRecipe(@PathVariable int id) {
+//        return recService.deleteRecipe(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+//    }
 }
