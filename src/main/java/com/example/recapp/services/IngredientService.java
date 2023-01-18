@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public interface IngredientService {
 
-    void addToList(Ingredient ingredient);
+    void addIngredient(Ingredient ingredient);
 
     Ingredient getIngredient(int idOfIng);
 

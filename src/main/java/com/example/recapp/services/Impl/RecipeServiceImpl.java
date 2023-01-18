@@ -11,43 +11,41 @@ import java.util.Map;
 @Service
 public class RecipeServiceImpl
         implements RecipeService {
-    private final Map<Integer, Recipe> recipesList = new LinkedHashMap<>();
+    private final Map<Integer, Recipe> recipes = new LinkedHashMap<>();
     private static int id = 1;
 
     @Override
-    public void addRecipe(Recipe recipe) {
-        this.recipesList.put(id++, recipe);
+    public final void addRecipe(Recipe recipe) {
+        this.recipes.put(id++, recipe);
     }
 
     @Override
-    public Recipe getRecipe(int id) {
-        return recipesList.get(Math.abs(id));
+    public final Recipe getRecipe(int id) {
+        return recipes.get(Math.abs(id));
     }
 
     @Override
-    public Collection<Recipe> getAllRecipes() {
-        return recipesList.values();
+    public final Collection<Recipe> getAllRecipes() {
+        return recipes.values();
     }
 
     @Override
-    public Recipe editRecipe(int id, Recipe recipe) {
-        for (Integer number : recipesList.keySet()) {
-            if (number == id) {
-                recipesList.put(id, recipe);
-                return recipe;
-            }
+    public final Recipe editRecipe(int id, Recipe recipe) {
+        if (recipes.containsKey(id)) {
+            recipes.put(id, recipe);
+            return recipe;
         }
         return null;
     }
 
     @Override
-    public boolean deleteRecipe(int id) {
-        for (Integer number : recipesList.keySet()) {
-            if (number == id) {
-                recipesList.remove(id);
-                return true;
-            }
-        }
-        return false;
+    public final boolean deleteRecipe(int id) {
+        Recipe recipe = recipes.remove(id);
+        return recipe != null;
+    }
+
+    @Override
+    public final Map<Integer, Recipe> getRecipes() {
+        return recipes;
     }
 }

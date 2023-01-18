@@ -11,43 +11,38 @@ import java.util.Map;
 @Service
 public class RecipesIngredientServiceImpl
         implements IngredientService {
-    private static final Map<Integer, Ingredient> ingredientsList = new LinkedHashMap<>();
+    private static final Map<Integer, Ingredient> ingredients = new LinkedHashMap<>();
     private int id = 1;
 
     @Override
-    public void addToList(Ingredient ingredient) {
-        ingredientsList.put(id++, ingredient);
+    public void addIngredient(Ingredient ingredient) {
+        if (!ingredients.containsValue(ingredient)) {
+            ingredients.put(id++, ingredient);
+        }
     }
 
     @Override
     public Ingredient getIngredient(int id) {
-        return ingredientsList.get(id);
+        return ingredients.get(id);
     }
 
     @Override
     public Collection<Ingredient> getAllIngredients() {
-        return ingredientsList.values();
+        return ingredients.values();
     }
 
     @Override
     public Ingredient editIngredient(int id, Ingredient ingredient) {
-        for (Integer number : ingredientsList.keySet()) {
-            if (number == id) {
-                ingredientsList.put(id, ingredient);
-                return ingredient;
-            }
+        if (ingredients.containsKey(id)) {
+            ingredients.put(id, ingredient);
+            return ingredient;
         }
         return null;
     }
 
     @Override
     public boolean deleteIngredient(int id) {
-        for (Integer number : ingredientsList.keySet()) {
-            if (number == id) {
-                ingredientsList.remove(id);
-                return true;
-            }
-        }
-        return false;
+        Ingredient ingredient = ingredients.remove(id);
+        return ingredient != null;
     }
 }
