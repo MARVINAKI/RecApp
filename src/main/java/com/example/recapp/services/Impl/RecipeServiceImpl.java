@@ -51,14 +51,14 @@ public class RecipeServiceImpl
 
     @Override
     public Collection<Recipe> findRecByIng(int... id) {
-        Set<Recipe> list = new HashSet<>();
+        Set<Recipe> foundRecipes = new HashSet<>();
         for (Recipe recipe : recipes.values()) {
             for (int num : id) {
                 if (recipe.getIngredients().contains(ingService.getIngredient(num))) {
-                    list.add(recipe);
+                    foundRecipes.add(recipe);
                 }
             }
         }
-        return list;
+        return foundRecipes;
     }
 }
