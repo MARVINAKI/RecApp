@@ -1,18 +1,23 @@
 package com.example.recapp.services.Impl;
 
 import com.example.recapp.model.Recipe;
+import com.example.recapp.services.IngredientService;
 import com.example.recapp.services.RecipeService;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class RecipeServiceImpl
         implements RecipeService {
     private final Map<Integer, Recipe> recipes = new LinkedHashMap<>();
+    private final IngredientService ingService;
+
     private static int id = 1;
+
+    public RecipeServiceImpl(IngredientService ingService) {
+        this.ingService = ingService;
+    }
 
     @Override
     public final void addRecipe(Recipe recipe) {
@@ -45,7 +50,15 @@ public class RecipeServiceImpl
     }
 
     @Override
-    public final Map<Integer, Recipe> getRecipes() {
-        return recipes;
+    public Collection<Recipe> findRecByIng(int... id) {
+        Set<Recipe> list = new HashSet<>();
+        for (Recipe recipe : recipes.values()) {
+            for (int num : id) {
+                if (recipe.getIngredients().contains(ingService.getIngredient(num))) {
+                    list.add(recipe);
+                }
+            }
+        }
+        return list;
     }
 }

@@ -3,7 +3,6 @@ package com.example.recapp.services;
 import com.example.recapp.model.Recipe;
 
 import java.util.Collection;
-import java.util.Map;
 
 public interface RecipeService {
 
@@ -17,5 +16,5 @@ public interface RecipeService {
 
     Collection<Recipe> getAllRecipes();
 
-    Map<Integer, Recipe> getRecipes();
+    Collection<Recipe> findRecByIng(int... id);
 }

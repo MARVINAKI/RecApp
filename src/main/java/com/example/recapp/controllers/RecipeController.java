@@ -7,7 +7,6 @@ import com.example.recapp.services.RecipeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
@@ -39,17 +38,7 @@ public class RecipeController {
 
     @GetMapping("/find")
     public ResponseEntity<Collection<Recipe>> findRecByIng(@RequestParam int... id) {
-        ArrayList<Recipe> list = new ArrayList<>();
-        for (Recipe recipe : recService.getRecipes().values()) {
-            for (int num : id) {
-                if (recipe.getIngredients().contains(ingService.getIngredient(num))) {
-                    if (!list.contains(recipe)) {
-                        list.add(recipe);
-                    }
-                }
-            }
-        }
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(recService.findRecByIng(id));
     }
 
     @GetMapping("/print")
@@ -58,6 +47,7 @@ public class RecipeController {
     }
 
     @PutMapping("/{id}")
+
     public ResponseEntity<Recipe> editRecipe(@PathVariable int id,
                                              @RequestBody Recipe newRecipe) {
         Recipe recipe = recService.editRecipe(id, newRecipe);
