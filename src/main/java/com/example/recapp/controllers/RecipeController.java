@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@Tag(name = "Рецепты", description = "Создание и редактирование рецептов")
+@Tag(name = "Рецепты",
+        description = "Создание и редактирование рецептов")
 @RequestMapping("/recipes")
 public class RecipeController {
     private final RecipeService recService;

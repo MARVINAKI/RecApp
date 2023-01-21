@@ -9,11 +9,8 @@ public class Ingredient {
     private String unit;
 
     public Ingredient(String title, double amount, String unit) {
-        if (title == null || title.trim().isEmpty()) {
-            throw new NullPointerException();
-        }
-        this.title = title;
+        this.title = title == null || title.trim().isEmpty() ? null : title.toLowerCase();
         this.amount = Math.abs(amount);
-        this.unit = (unit == null || unit.trim().isEmpty()) ? null : unit;
+        this.unit = unit == null || unit.trim().isEmpty() ? null : unit;
     }
 }

@@ -11,7 +11,8 @@ import java.util.Collection;
 
 
 @RestController
-@Tag(name = "Ингредиенты", description = "Создание и редактирование ингредиентов")
+@Tag(name = "Ингредиенты",
+        description = "Создание и редактирование ингредиентов")
 @RequestMapping("/ingredients")
 public class IngredientController {
     private final IngredientService ingredientService;

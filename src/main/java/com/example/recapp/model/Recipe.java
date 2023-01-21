@@ -12,7 +12,7 @@ public class Recipe {
     private Queue<String> steps = new ArrayDeque<>();
 
     public Recipe(String title, int timeOfCooking, Collection<Ingredient> ingredients, Queue<String> steps) {
-        this.title = title;
+        this.title = title == null || title.trim().isEmpty() ? null : title.toLowerCase();
         this.timeOfCooking = timeOfCooking;
         this.ingredients.addAll(ingredients);
         this.steps.addAll(steps);
